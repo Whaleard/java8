@@ -22,6 +22,7 @@ public class StaticProxyTest {
         // 在代理类实现的接口方法中调用该被代理类同样实现的接口方法并增加其他的业务逻辑以对被代理类的方法进行增强
         // 最后只需要调用代理类的对应方法即可
         UserDao userDao = new UserDaoImpl();
+        // 注：这里可以看出静态代理可以对被代理对象进行灵活切换，但是无法进行功能的灵活处理
         UserProxy proxy = new UserProxy(userDao);
         proxy.login();
     }
