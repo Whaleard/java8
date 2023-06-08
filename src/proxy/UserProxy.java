@@ -22,4 +22,11 @@ public class UserProxy implements UserDao {
         userDao.login();
         System.out.println("登录成功！");
     }
+
+    @Override
+    public void logout() {
+        System.out.println("清除缓存");
+        userDao.logout();
+        System.out.println("登出成功！");
+    }
 }

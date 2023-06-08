@@ -6,4 +6,6 @@ package dao;
 public interface UserDao {
 
     void login();
+
+    void logout();
 }

@@ -11,4 +11,8 @@ public class UserDaoImpl implements UserDao {
     public void login() {
         System.out.println("正在登录中...");
     }
+
+    public void logout() {
+        System.out.println("正在登出中...");
+    }
 }
