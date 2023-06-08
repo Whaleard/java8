@@ -25,5 +25,6 @@ public class StaticProxyTest {
         // 注：这里可以看出静态代理可以对被代理对象进行灵活切换，但是无法进行功能的灵活处理
         UserProxy proxy = new UserProxy(userDao);
         proxy.login();
+        proxy.logout();
     }
 }
