@@ -7,7 +7,7 @@ import java.lang.reflect.Method;
  * @author Mr.MC
  */
 public class UserInvocationHandler<T> implements InvocationHandler {
-    // ±»´úÀíÀàµÄ¶ÔÏó
+    // è¢«ä»£ç†ç±»çš„å¯¹è±¡
     private T target;
 
     public UserInvocationHandler(T target) {
@@ -16,9 +16,9 @@ public class UserInvocationHandler<T> implements InvocationHandler {
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        System.out.println("×¼±¸²Ù×÷");
+        System.out.println("å‡†å¤‡æ“ä½œ");
         Object invoke = method.invoke(target, args);
-        System.out.println("Ïà¹Ø¹¦ÄÜ³É¹¦ÊµÏÖ£¡");
+        System.out.println("ç›¸å…³åŠŸèƒ½æˆåŠŸå®ç°ï¼");
         return invoke;
     }
 }

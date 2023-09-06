@@ -13,13 +13,13 @@ public class EnumTest {
         WeekEnum test = WeekEnum.TUE;
         switch (test) {
             case MON:
-                System.out.println("ĞÇÆÚÒ»");
+                System.out.println("æ˜ŸæœŸä¸€");
                 break;
             case TUE:
-                System.out.println("ĞÇÆÚ¶ş");
+                System.out.println("æ˜ŸæœŸäºŒ");
                 break;
             case WED:
-                System.out.println("ĞÇÆÚÈı");
+                System.out.println("æ˜ŸæœŸä¸‰");
                 break;
             default:
                 System.out.println(test);
@@ -27,12 +27,12 @@ public class EnumTest {
         }
         System.out.println(WeekEnum.getNameByIndex(2));
         System.out.println(test.name());
-        // »ñÈ¡Ã¶¾Ù³£Á¿ÔÚÃ¶¾ÙÉùÃ÷ÖĞµÄÎ»ÖÃ£¬³õÊ¼Ë÷ÒıÎª0
+        // è·å–æšä¸¾å¸¸é‡åœ¨æšä¸¾å£°æ˜ä¸­çš„ä½ç½®ï¼Œåˆå§‹ç´¢å¼•ä¸º0
         System.out.println(test.ordinal());
         for (WeekEnum weekEnum : WeekEnum.values()) {
-            // toString()ºÍname()¾ù·µ»ØnameÊôĞÔ
+            // toString()å’Œname()å‡è¿”å›nameå±æ€§
             // Enum.valueOf(WeekEnum.class, weekEnum.toString());
-            // ·µ»ØÖ¸¶¨Ãû³ÆµÄÃ¶¾ÙÀàĞÍµÄÃ¶¾Ù³£Á¿
+            // è¿”å›æŒ‡å®šåç§°çš„æšä¸¾ç±»å‹çš„æšä¸¾å¸¸é‡
             WeekEnum weekEnum1 = Enum.valueOf(WeekEnum.class, weekEnum.name());
             System.out.println(weekEnum1);
         }

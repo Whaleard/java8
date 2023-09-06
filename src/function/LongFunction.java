@@ -6,7 +6,7 @@ package function;
 public interface LongFunction<T, R> {
 
     /**
-     * »ñÈ¡Á½¸öÈë²ÎÔËËãºóµÄÖµ
+     * è·å–ä¸¤ä¸ªå…¥å‚è¿ç®—åçš„å€¼
      * @param l1
      * @param l2
      * @return

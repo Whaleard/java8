@@ -6,27 +6,27 @@ import dao.UserDao;
  * @author Mr.MC
  */
 public class UserProxy implements UserDao {
-    // 1¡¢ÀàÖĞµÄ³ÉÔ±±äÁ¿Éè¼ÆÎª½Ó¿Ú
-    private UserDao userDao;    // Ä¿±ê¶ÔÏó
+    // 1ã€ç±»ä¸­çš„æˆå‘˜å˜é‡è®¾è®¡ä¸ºæ¥å£
+    private UserDao userDao;    // ç›®æ ‡å¯¹è±¡
 
-    // 2¡¢·½·¨µÄĞÎ²ÎÉè¼ÆÎª½Ó¿Ú
-    public UserProxy(UserDao userDao) { // ´«ÈëÄ¿±ê¶ÔÏó
+    // 2ã€æ–¹æ³•çš„å½¢å‚è®¾è®¡ä¸ºæ¥å£
+    public UserProxy(UserDao userDao) { // ä¼ å…¥ç›®æ ‡å¯¹è±¡
         this.userDao = userDao;
     }
 
     @Override
     public void login() {
-        System.out.println("ÇëÊäÈëÓÃ»§Ãû");
-        System.out.println("ÇëÊäÈëÃÜÂë");
-        // µ÷ÓÃÊ±½Ó¿ÚÖ¸ÏòÊµÏÖÀà
+        System.out.println("è¯·è¾“å…¥ç”¨æˆ·å");
+        System.out.println("è¯·è¾“å…¥å¯†ç ");
+        // è°ƒç”¨æ—¶æ¥å£æŒ‡å‘å®ç°ç±»
         userDao.login();
-        System.out.println("µÇÂ¼³É¹¦£¡");
+        System.out.println("ç™»å½•æˆåŠŸï¼");
     }
 
     @Override
     public void logout() {
-        System.out.println("Çå³ı»º´æ");
+        System.out.println("æ¸…é™¤ç¼“å­˜");
         userDao.logout();
-        System.out.println("µÇ³ö³É¹¦£¡");
+        System.out.println("ç™»å‡ºæˆåŠŸï¼");
     }
 }

@@ -18,10 +18,10 @@ public class Station extends Thread {
         while (ticket > 0) {
             synchronized (obj) {
                 if (ticket > 0) {
-                    System.out.println(getName() + "卖出了第" + ticket + "张票");
+                    System.out.println(getName() + "鍗栧嚭浜嗙" + ticket + "寮犵エ");
                     ticket--;
                 } else {
-                    System.out.println("票卖完了");
+                    System.out.println("绁ㄥ崠瀹屼簡");
                 }
             }
         }

@@ -59,7 +59,7 @@ public class Employee {
     }
 
     public void show() {
-        System.out.println("ÎÒÊÇÒ»ÃûÔ±¹¤");
+        System.out.println("æˆ‘æ˜¯ä¸€åå‘˜å·¥");
     }
 
     @Override

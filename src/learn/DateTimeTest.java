@@ -37,11 +37,11 @@ public class DateTimeTest {
     }
 
     /**
-     * Instant£ºÊ±¼ä´Á£¨ÒÔUnixÔªÄê£º1970Äê1ÔÂ1ÈÕ00:00:00µ½Ä³¸öÊ±¼äÖ®¼äµÄºÁÃëÖµ£©
+     * Instantï¼šæ—¶é—´æˆ³ï¼ˆä»¥Unixå…ƒå¹´ï¼š1970å¹´1æœˆ1æ—¥00:00:00åˆ°æŸä¸ªæ—¶é—´ä¹‹é—´çš„æ¯«ç§’å€¼ï¼‰
      */
     @Test
     public void test02() {
-        // Ä¬ÈÏ»ñÈ¡UTCÊ±Çø
+        // é»˜è®¤è·å–UTCæ—¶åŒº
         Instant ins = Instant.now();
         System.out.println(ins);
 
@@ -57,12 +57,12 @@ public class DateTimeTest {
     }
 
     /**
-     * Duration£º¼ÆËãÁ½¸ö¡°Ê±¼ä¡±Ö®¼äµÄ¼ä¸ô
-     * Period£º¼ÆËãÁ½¸ö¡°ÈÕÆÚ¡±Ö®Ç°µÄ¼ä¸ô
+     * Durationï¼šè®¡ç®—ä¸¤ä¸ªâ€œæ—¶é—´â€ä¹‹é—´çš„é—´éš”
+     * Periodï¼šè®¡ç®—ä¸¤ä¸ªâ€œæ—¥æœŸâ€ä¹‹å‰çš„é—´éš”
      */
     @Test
     public void test03() {
-        // ¼ÆËã»úÊ¹ÓÃµÄÊ±¼ä´ÁÊ±¼ä
+        // è®¡ç®—æœºä½¿ç”¨çš„æ—¶é—´æˆ³æ—¶é—´
         Instant ins = Instant.now();
         try {
             Thread.sleep(1000);
@@ -75,7 +75,7 @@ public class DateTimeTest {
         Duration duration = Duration.between(ins, ins2);
         System.out.println(duration.toMillis());
 
-        // ÈËÊ¹ÓÃµÄÊ±¼ä
+        // äººä½¿ç”¨çš„æ—¶é—´
         LocalTime lt = LocalTime.now();
 
         try {
@@ -99,7 +99,7 @@ public class DateTimeTest {
     }
 
     /**
-     * TemporalAdjuster£ºÊ±¼äĞ£ÕıÆ÷
+     * TemporalAdjusterï¼šæ—¶é—´æ ¡æ­£å™¨
      */
     @Test
     public void test04() {
@@ -112,7 +112,7 @@ public class DateTimeTest {
         LocalDateTime ldt3 = ldt.with(TemporalAdjusters.next(DayOfWeek.SUNDAY));
         System.out.println(ldt3);
 
-        // ×Ô¶¨Òå£ºÏÂÒ»¸ö¹¤×÷ÈÕ
+        // è‡ªå®šä¹‰ï¼šä¸‹ä¸€ä¸ªå·¥ä½œæ—¥
         LocalDateTime ldt5 = ldt.with((l) -> {
             LocalDateTime ldt4 = (LocalDateTime) l;
 
@@ -130,7 +130,7 @@ public class DateTimeTest {
     }
 
     /**
-     * DateTimeFormatter£º¸ñÊ½»¯Ê±¼ä/ÈÕÆÚ
+     * DateTimeFormatterï¼šæ ¼å¼åŒ–æ—¶é—´/æ—¥æœŸ
      */
     @Test
     public void test05() {
@@ -140,18 +140,18 @@ public class DateTimeTest {
         String strDate = ldt.format(dtf);
         System.out.println(strDate);
 
-        // ¸ñÊ½»¯ÎªÏëÒªµÄÈÕÆÚ¸ñÊ½×Ö·û´®
-        DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("yyyyÄêMMÔÂddÈÕ HH:mm:ss");
+        // æ ¼å¼åŒ–ä¸ºæƒ³è¦çš„æ—¥æœŸæ ¼å¼å­—ç¬¦ä¸²
+        DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("yyyyå¹´MMæœˆddæ—¥ HH:mm:ss");
         String strDate2 = dtf2.format(ldt);
         System.out.println(strDate2);
 
-        // ½«×Ö·û´®½âÎö»ØÊ±¼äÈÕÆÚ
+        // å°†å­—ç¬¦ä¸²è§£æå›æ—¶é—´æ—¥æœŸ
         LocalDateTime ldt3 = LocalDateTime.parse(strDate2, dtf2);
         System.out.println(ldt3);
     }
 
     /**
-     * ZonedDate¡¢ZonedTime¡¢ZonedDateTime
+     * ZonedDateã€ZonedTimeã€ZonedDateTime
      */
     @Test
     public void test06() {

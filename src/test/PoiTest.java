@@ -18,7 +18,7 @@ public class PoiTest {
     @Test
     public void test() {
 
-        // 文件路径可以根据自己需求来 我的是放在本地根路径下了
+        // 鏂囦欢璺緞鍙互鏍规嵁鑷繁闇�姹傛潵 鎴戠殑鏄斁鍦ㄦ湰鍦版牴璺緞涓嬩簡
         File file = new File("C:\\Users\\issuser\\Desktop\\Test.xlsx");
         XSSFWorkbook wb = null;
         try {
@@ -37,9 +37,9 @@ public class PoiTest {
                     PictureData pic = picture.getPictureData();
                     XSSFClientAnchor anchor = picture.getPreferredSize();
                     CTMarker marker = anchor.getFrom();
-                    // 获取图片格式
+                    // 鑾峰彇鍥剧墖鏍煎紡
                     String ext = pic.suggestFileExtension();
-                    System.out.println("行号[{}],单元格[{}],图片格式[{}]" + marker.getRow() + "---" + marker.getCol() + "---" + ext);
+                    System.out.println("琛屽彿[{}],鍗曞厓鏍糩{}],鍥剧墖鏍煎紡[{}]" + marker.getRow() + "---" + marker.getCol() + "---" + ext);
                 }
             }
         }
@@ -79,7 +79,7 @@ public class PoiTest {
         while (it.hasNext()) {
             XSSFPictureData data = (XSSFPictureData) it.next();
             // try {
-                // fos = new FileOutputStream();
+            // fos = new FileOutputStream();
             // } catch (FileNotFoundException e) {
             //     throw new RuntimeException(e);
             // }
@@ -90,7 +90,7 @@ public class PoiTest {
 
     @Test
     public void test03() {
-        // 文件路径可以根据自己需求来 我的是放在本地根路径下了
+        // 鏂囦欢璺緞鍙互鏍规嵁鑷繁闇�姹傛潵 鎴戠殑鏄斁鍦ㄦ湰鍦版牴璺緞涓嬩簡
         File file = new File("C:\\Users\\issuser\\Desktop\\Test.xlsx");
         XSSFWorkbook wb = null;
         try {

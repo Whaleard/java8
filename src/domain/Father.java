@@ -1,9 +1,9 @@
 package domain;
 
 public class Father {
-    private String face; // 长相
-    private String height; // 身高
-    private Life life; // 生命
+    private String face; // 闀跨浉
+    private String height; // 韬珮
+    private Life life; // 鐢熷懡
 
     public Father() {
     }

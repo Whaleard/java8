@@ -13,34 +13,34 @@ import java.util.stream.Stream;
 public class StreamApiTest {
 
     /**
-     * Ò»¡¢StreamµÄÈı¸ö²Ù×÷²½Öè£º
+     * ä¸€ã€Streamçš„ä¸‰ä¸ªæ“ä½œæ­¥éª¤ï¼š
      *
-     *  1.´´½¨StreamÁ÷
+     *  1.åˆ›å»ºStreamæµ
      *
-     *  2.ÖĞ¼ä²Ù×÷
+     *  2.ä¸­é—´æ“ä½œ
      *
-     *  3.ÖÕÖ¹²Ù×÷
+     *  3.ç»ˆæ­¢æ“ä½œ
      */
 
     @Test
     public void test01() {
-        // 1.¿ÉÒÔÍ¨¹ıCollectionÏµÁĞ¼¯ºÏÌá¹©µÄstream()»òparallelStream()
+        // 1.å¯ä»¥é€šè¿‡Collectionç³»åˆ—é›†åˆæä¾›çš„stream()æˆ–parallelStream()
         List<String> list = new ArrayList<>();
         Stream<String> stream = list.stream();
 
-        // 2.Í¨¹ıArraysÖĞµÄ¾²Ì¬·½·¨stream()»ñÈ¡Êı×éÁ÷
+        // 2.é€šè¿‡Arraysä¸­çš„é™æ€æ–¹æ³•stream()è·å–æ•°ç»„æµ
         Employee[] employees = new Employee[10];
         Stream<Employee> stream1 = Arrays.stream(employees);
 
-        // 3.Í¨¹ıStreamÀàÖĞµÄ¾²Ì¬·½·¨of()
+        // 3.é€šè¿‡Streamç±»ä¸­çš„é™æ€æ–¹æ³•of()
         Stream<String> stream2 = Stream.of("aa", "bb", "cc");
 
-        // 4.´´½¨ÎŞÏŞÁ÷
-        // µü´ú
+        // 4.åˆ›å»ºæ— é™æµ
+        // è¿­ä»£
         Stream<Integer> stream3 = Stream.iterate(0, (x) -> x + 2);
         stream3.limit(10).forEach(System.out::println);
 
-        // Éú³É
+        // ç”Ÿæˆ
         Stream.generate(() -> Math.random())
                 .limit(5)
                 .forEach(System.out::println);
@@ -48,21 +48,21 @@ public class StreamApiTest {
     }
 
     /**
-     * ÖĞ¼ä²Ù×÷
+     * ä¸­é—´æ“ä½œ
      *
-     *  É¸Ñ¡ÓëÇĞÆ¬
-     *      filter£º½ÓÊÕLambda£¬´ÓÁ÷ÖĞÅÅ³ıÄ³Ğ©ÔªËØ
-     *      limit£º½Ø¶ÏÁ÷£¬Ê¹ÆäÔªËØ²»³¬¹ı¸ø¶¨ÊıÁ¿
-     *      skip(n)£ºÌø¹ıÔªËØ£¬·µ»ØÒ»¸öÈÓµôÁËÇ°n¸öÔªËØµÄÁ÷¡£ÈôÁ÷ÖĞÔªËØ²»×ãn¸ö£¬Ôò·µ»ØÒ»¸ö¿ÕÁ÷¡£Óëlimit(n)»¥²¹
-     *      distinct£ºÉ¸Ñ¡£¬Í¨¹ıÁ÷ËùÉú³ÉÔªËØµÄhashCode()ºÍequals()È¥³ıÖØ¸´ÔªËØ
+     *  ç­›é€‰ä¸åˆ‡ç‰‡
+     *      filterï¼šæ¥æ”¶Lambdaï¼Œä»æµä¸­æ’é™¤æŸäº›å…ƒç´ 
+     *      limitï¼šæˆªæ–­æµï¼Œä½¿å…¶å…ƒç´ ä¸è¶…è¿‡ç»™å®šæ•°é‡
+     *      skip(n)ï¼šè·³è¿‡å…ƒç´ ï¼Œè¿”å›ä¸€ä¸ªæ‰”æ‰äº†å‰nä¸ªå…ƒç´ çš„æµã€‚è‹¥æµä¸­å…ƒç´ ä¸è¶³nä¸ªï¼Œåˆ™è¿”å›ä¸€ä¸ªç©ºæµã€‚ä¸limit(n)äº’è¡¥
+     *      distinctï¼šç­›é€‰ï¼Œé€šè¿‡æµæ‰€ç”Ÿæˆå…ƒç´ çš„hashCode()å’Œequals()å»é™¤é‡å¤å…ƒç´ 
      */
 
     List<Employee> employees = Arrays.asList(
-            new Employee("ÕÅÈı", 18, 999.9),
-            new Employee("ÀîËÄ", 54, 1962.4),
-            new Employee("ÍõÎå", 32, 1844.9),
-            new Employee("ÕÔÁù", 5, 557.4),
-            new Employee("ÌïÆß", 97, 1099.5)
+            new Employee("å¼ ä¸‰", 18, 999.9),
+            new Employee("æå››", 54, 1962.4),
+            new Employee("ç‹äº”", 32, 1844.9),
+            new Employee("èµµå…­", 5, 557.4),
+            new Employee("ç”°ä¸ƒ", 97, 1099.5)
     );
 
     @Test
@@ -73,9 +73,9 @@ public class StreamApiTest {
     }
 
     /**
-     * Ó³Éä
-     *  map£º½ÓÊÕLambda£¬½«ÔªËØ×ª»»³ÉÆäËûĞÎÊ½»òÌáÈ¡ĞÅÏ¢¡£½ÓÊÕÒ»¸öº¯Êı×÷Îª²ÎÊı£¬¸Ãº¯Êı»á±»Ó¦ÓÃµ½Ã¿¸öÔªËØÉÏ£¬²¢½«ÆäÓ³Éä³ÉÒ»¸öĞÂµÄÔªËØ¡£
-     *  flatMap£º½ÓÊÕÒ»¸öº¯Êı×÷Îª²ÎÊı£¬½«Á÷ÖĞµÄÃ¿¸öÖµ¶¼»»³ÉÁíÒ»¸öÁ÷£¬È»ºó°ÑËùÓĞÁ÷Á¬½Ó³ÉÒ»¸öÁ÷¡£
+     * æ˜ å°„
+     *  mapï¼šæ¥æ”¶Lambdaï¼Œå°†å…ƒç´ è½¬æ¢æˆå…¶ä»–å½¢å¼æˆ–æå–ä¿¡æ¯ã€‚æ¥æ”¶ä¸€ä¸ªå‡½æ•°ä½œä¸ºå‚æ•°ï¼Œè¯¥å‡½æ•°ä¼šè¢«åº”ç”¨åˆ°æ¯ä¸ªå…ƒç´ ä¸Šï¼Œå¹¶å°†å…¶æ˜ å°„æˆä¸€ä¸ªæ–°çš„å…ƒç´ ã€‚
+     *  flatMapï¼šæ¥æ”¶ä¸€ä¸ªå‡½æ•°ä½œä¸ºå‚æ•°ï¼Œå°†æµä¸­çš„æ¯ä¸ªå€¼éƒ½æ¢æˆå¦ä¸€ä¸ªæµï¼Œç„¶åæŠŠæ‰€æœ‰æµè¿æ¥æˆä¸€ä¸ªæµã€‚
      */
 
     @Test
@@ -109,9 +109,9 @@ public class StreamApiTest {
     }
 
     /**
-     * ÅÅĞò
-     *  sorted()£º×ÔÈ»ÅÅĞò
-     *  sorted(Comparator com)£º¶¨ÖÆÅÅĞò
+     * æ’åº
+     *  sorted()ï¼šè‡ªç„¶æ’åº
+     *  sorted(Comparator com)ï¼šå®šåˆ¶æ’åº
      */
 
     @Test
@@ -124,23 +124,23 @@ public class StreamApiTest {
     }
 
     /**
-     * ²éÕÒÓëÆ¥Åä
-     *  allMatch£º¼ì²éÊÇ·ñÆ¥ÅäËùÓĞÔªËØ
-     *  anyMatch£º¼ì²éÊÇ·ñÖÁÉÙÆ¥ÅäÒ»¸öÔªËØ
-     *  noneMatch£º¼ì²éÊÇ·ñÃ»ÓĞÆ¥ÅäËùÓĞÔªËØ
-     *  findFirst£º·µ»ØµÚÒ»¸öÔªËØ
-     *  findAny£º·µ»Øµ±Ç°Á÷ÖĞÈÎÒâÔªËØ
-     *  count£º·µ»ØÁ÷ÖĞÔªËØµÄ×Ü¸öÊı
-     *  max£º·µ»ØÁ÷ÖĞ×î´óÖµ
-     *  min£º·µ»ØÁ÷ÖĞ×îĞ¡Öµ
+     * æŸ¥æ‰¾ä¸åŒ¹é…
+     *  allMatchï¼šæ£€æŸ¥æ˜¯å¦åŒ¹é…æ‰€æœ‰å…ƒç´ 
+     *  anyMatchï¼šæ£€æŸ¥æ˜¯å¦è‡³å°‘åŒ¹é…ä¸€ä¸ªå…ƒç´ 
+     *  noneMatchï¼šæ£€æŸ¥æ˜¯å¦æ²¡æœ‰åŒ¹é…æ‰€æœ‰å…ƒç´ 
+     *  findFirstï¼šè¿”å›ç¬¬ä¸€ä¸ªå…ƒç´ 
+     *  findAnyï¼šè¿”å›å½“å‰æµä¸­ä»»æ„å…ƒç´ 
+     *  countï¼šè¿”å›æµä¸­å…ƒç´ çš„æ€»ä¸ªæ•°
+     *  maxï¼šè¿”å›æµä¸­æœ€å¤§å€¼
+     *  minï¼šè¿”å›æµä¸­æœ€å°å€¼
      */
 
     List<Employee> employees1 = Arrays.asList(
-            new Employee("ÕÅÈı", 18, 999.9, Employee.Status.FREE),
-            new Employee("ÀîËÄ", 54, 1962.4, Employee.Status.BUSY),
-            new Employee("ÍõÎå", 32, 1844.9, Employee.Status.VOCATION),
-            new Employee("ÕÔÁù", 5, 557.4, Employee.Status.FREE),
-            new Employee("ÌïÆß", 97, 1099.5, Employee.Status.BUSY)
+            new Employee("å¼ ä¸‰", 18, 999.9, Employee.Status.FREE),
+            new Employee("æå››", 54, 1962.4, Employee.Status.BUSY),
+            new Employee("ç‹äº”", 32, 1844.9, Employee.Status.VOCATION),
+            new Employee("èµµå…­", 5, 557.4, Employee.Status.FREE),
+            new Employee("ç”°ä¸ƒ", 97, 1099.5, Employee.Status.BUSY)
     );
 
     @Test
@@ -185,8 +185,8 @@ public class StreamApiTest {
     }
 
     /**
-     * ¹éÔ¼
-     *  reduce(T identity, BinaryOperator) / reduce(BinaryOperator)£º¿ÉÒÔ½«Á÷ÖĞÔªËØ·´¸´½áºÏÆğÀ´£¬µÃµ½Ò»¸öÖµ¡£
+     * å½’çº¦
+     *  reduce(T identity, BinaryOperator) / reduce(BinaryOperator)ï¼šå¯ä»¥å°†æµä¸­å…ƒç´ åå¤ç»“åˆèµ·æ¥ï¼Œå¾—åˆ°ä¸€ä¸ªå€¼ã€‚
      */
 
     @Test
@@ -196,7 +196,7 @@ public class StreamApiTest {
                 .reduce(0, (x, y) -> x + y);
         System.out.println(sum);
 
-        // map-reduceÄ£Ê½
+        // map-reduceæ¨¡å¼
         Optional<Double> optional = employees1.stream()
                 .map(Employee::getSalary)
                 .reduce(Double::sum);
@@ -204,8 +204,8 @@ public class StreamApiTest {
     }
 
     /**
-     * ÊÕ¼¯
-     *  collect£º½«Á÷×ª»»ÎªÆäËûĞÎÊ½¡£½ÓÊÕÒ»¸öCollector½Ó¿ÚµÄÊµÏÖ£¬ÓÃÓÚ¸øStreamÖĞÔªËØ×ö»ã×ÜµÄ·½·¨
+     * æ”¶é›†
+     *  collectï¼šå°†æµè½¬æ¢ä¸ºå…¶ä»–å½¢å¼ã€‚æ¥æ”¶ä¸€ä¸ªCollectoræ¥å£çš„å®ç°ï¼Œç”¨äºç»™Streamä¸­å…ƒç´ åšæ±‡æ€»çš„æ–¹æ³•
      */
 
     @Test
@@ -228,12 +228,12 @@ public class StreamApiTest {
 
     @Test
     public void test09() {
-        // ×Ü¸öÊı
+        // æ€»ä¸ªæ•°
         Long count = employees1.stream()
                 .collect(Collectors.counting());
         System.out.println(count);
 
-        // Æ½¾ùÖµ
+        // å¹³å‡å€¼
         Double avg = employees1.stream()
                 .collect(Collectors.averagingDouble(Employee::getSalary));
         System.out.println(avg);
@@ -249,7 +249,7 @@ public class StreamApiTest {
     }
 
     /**
-     * ·Ö×é
+     * åˆ†ç»„
      */
     @Test
     public void test10() {

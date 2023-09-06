@@ -9,15 +9,15 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 /**
- * ¹ØÓÚjava.lang.ClassÀàµÄÀí½â
- *  1¡¢ÀàµÄ¼ÓÔØ¹ı³Ì£º
- *      ³ÌĞò¾­¹ıjavac.exeÃüÁîÒÔºó£¬»áÉú³ÉÒ»¸ö»ò¶à¸ö×Ö½ÚÂëÎÄ¼ş£¨.class½áÎ²£©
- *      ½Ó×ÅÎÒÃÇÊ¹ÓÃjava.exeÃüÁî¶ÔÄ³¸ö×Ö½ÚÂëÎÄ¼ş½øĞĞ½âÊÍÔËĞĞ¡£Ïàµ±ÓÚ½«Ä³¸ö×Ö½ÚÂëÎÄ¼ş¼ÓÔØµ½ÄÚ´æÖĞ¡£
- *      ´Ë¹ı³Ì¾Í³ÆÎªÀàµÄ¼ÓÔØ¡£¼ÓÔØµ½ÄÚ´æÖĞµÄÀà£¬ÎÒÃÇ¾Í³ÆÎªÔËĞĞÊ±Àà£¬´ËÊ±ÔËĞĞÊ±Àà£¬¾Í×÷ÎªClassµÄÒ»¸öÊµÀı¡£
+ * å…³äºjava.lang.Classç±»çš„ç†è§£
+ *  1ã€ç±»çš„åŠ è½½è¿‡ç¨‹ï¼š
+ *      ç¨‹åºç»è¿‡javac.exeå‘½ä»¤ä»¥åï¼Œä¼šç”Ÿæˆä¸€ä¸ªæˆ–å¤šä¸ªå­—èŠ‚ç æ–‡ä»¶ï¼ˆ.classç»“å°¾ï¼‰
+ *      æ¥ç€æˆ‘ä»¬ä½¿ç”¨java.exeå‘½ä»¤å¯¹æŸä¸ªå­—èŠ‚ç æ–‡ä»¶è¿›è¡Œè§£é‡Šè¿è¡Œã€‚ç›¸å½“äºå°†æŸä¸ªå­—èŠ‚ç æ–‡ä»¶åŠ è½½åˆ°å†…å­˜ä¸­ã€‚
+ *      æ­¤è¿‡ç¨‹å°±ç§°ä¸ºç±»çš„åŠ è½½ã€‚åŠ è½½åˆ°å†…å­˜ä¸­çš„ç±»ï¼Œæˆ‘ä»¬å°±ç§°ä¸ºè¿è¡Œæ—¶ç±»ï¼Œæ­¤æ—¶è¿è¡Œæ—¶ç±»ï¼Œå°±ä½œä¸ºClassçš„ä¸€ä¸ªå®ä¾‹ã€‚
  *
- *  2¡¢»»¾ä»°Ëµ£¬ClassµÄÊµÀı¾Í¶ÔÓ¦×ÅÒ»¸öÔËĞĞÊ±Àà¡£
+ *  2ã€æ¢å¥è¯è¯´ï¼ŒClassçš„å®ä¾‹å°±å¯¹åº”ç€ä¸€ä¸ªè¿è¡Œæ—¶ç±»ã€‚
  *
- *  3¡¢¼ÓÔØµ½ÄÚ´æÖĞµÄÔËĞĞÊ±Àà£¬»á»º´æÒ»¶¨µÄÊ±¼ä¡£ÔÚ´ËÊ±¼äÖ®ÄÚ£¬ÎÒÃÇ¿ÉÒÔÍ¨¹ı²»Í¬µÄ·½Ê½À´»ñÈ¡´ËÔËĞĞÊ±Àà¡£
+ *  3ã€åŠ è½½åˆ°å†…å­˜ä¸­çš„è¿è¡Œæ—¶ç±»ï¼Œä¼šç¼“å­˜ä¸€å®šçš„æ—¶é—´ã€‚åœ¨æ­¤æ—¶é—´ä¹‹å†…ï¼Œæˆ‘ä»¬å¯ä»¥é€šè¿‡ä¸åŒçš„æ–¹å¼æ¥è·å–æ­¤è¿è¡Œæ—¶ç±»ã€‚
  *
  * @author Mr.MC
  */
@@ -25,65 +25,65 @@ public class ReflectionTest {
 
     @Test
     public void test01() throws Exception {
-        // 1.Í¨¹ı·´Éä´´½¨¶ÔÏó
+        // 1.é€šè¿‡åå°„åˆ›å»ºå¯¹è±¡
         Class<Employee> clazz = Employee.class;
         Constructor<Employee> cons = clazz.getConstructor(String.class, Integer.class, Double.class, Employee.Status.class);
 
         Employee employee = cons.newInstance("Tom", 12, 100.5, Employee.Status.BUSY);
         System.out.println(employee);
 
-        // 2.Í¨¹ı·´Éä£¬µ÷ÓÃ¶ÔÏóÖ¸¶¨µÄÊôĞÔ¡¢·½·¨
+        // 2.é€šè¿‡åå°„ï¼Œè°ƒç”¨å¯¹è±¡æŒ‡å®šçš„å±æ€§ã€æ–¹æ³•
         Field age = clazz.getDeclaredField("age");
-        // isAccessible()ÖµÎªtrueÔòÖ¸Ê¾·´ÉäµÄ¶ÔÏóÔÚÊ¹ÓÃÊ±Ó¦¸ÃÈ¡ÏûJavaÓïÑÔ·ÃÎÊ¼ì²é¡£ÖµÎªfalseÔòÖ¸Ê¾·´ÉäµÄ¶ÔÏóÓ¦¸ÃÊµÊ©JavaÓïÑÔ·ÃÎÊ¼ì²é¡£
-        // Êµ¼ÊÉÏsetAccessibleÊÇÆôÓÃºÍ½ûÓÃ·ÃÎÊ°²È«¼ì²éµÄ¿ª¹Ø£¬²¢²»ÊÇÎªtrue¾ÍÄÜ·ÃÎÊÎªfalse¾Í²»ÄÜ·ÃÎÊ¡£
-        // ÓÉÓÚJDKµÄ°²È«¼ì²éºÄÊ±½Ï¶à¡£ËùÒÔÍ¨¹ısetAccessible(true)µÄ·½Ê½¹Ø±Õ°²È«¼ì²é¾Í¿ÉÒÔ´ïµ½ÌáÉı·´ÉäËÙ¶ÈµÄÄ¿µÄ¡£
+        // isAccessible()å€¼ä¸ºtrueåˆ™æŒ‡ç¤ºåå°„çš„å¯¹è±¡åœ¨ä½¿ç”¨æ—¶åº”è¯¥å–æ¶ˆJavaè¯­è¨€è®¿é—®æ£€æŸ¥ã€‚å€¼ä¸ºfalseåˆ™æŒ‡ç¤ºåå°„çš„å¯¹è±¡åº”è¯¥å®æ–½Javaè¯­è¨€è®¿é—®æ£€æŸ¥ã€‚
+        // å®é™…ä¸ŠsetAccessibleæ˜¯å¯ç”¨å’Œç¦ç”¨è®¿é—®å®‰å…¨æ£€æŸ¥çš„å¼€å…³ï¼Œå¹¶ä¸æ˜¯ä¸ºtrueå°±èƒ½è®¿é—®ä¸ºfalseå°±ä¸èƒ½è®¿é—®ã€‚
+        // ç”±äºJDKçš„å®‰å…¨æ£€æŸ¥è€—æ—¶è¾ƒå¤šã€‚æ‰€ä»¥é€šè¿‡setAccessible(true)çš„æ–¹å¼å…³é—­å®‰å…¨æ£€æŸ¥å°±å¯ä»¥è¾¾åˆ°æå‡åå°„é€Ÿåº¦çš„ç›®çš„ã€‚
 
-        // isAccessible()·µ»ØµÄÎªoverrideÊôĞÔ¡£
-        // overrideÖ¸Ê¾¸Ã¶ÔÏóÊÇ·ñ¸²¸ÇÓïÑÔ¼¶·ÃÎÊ¼ì²é¡£³õÊ¼»¯Îª"false"¡£´Ë×Ö¶ÎÓÉ×Ö¶Î¡¢·½·¨ºÍ¹¹Ôìº¯ÊıÊ¹ÓÃ¡£
-        // ·ÃÎÊ¼ì²éÓ¦¸ÃÊÇ¸ù¾İ¸Ã×Ö¶Î¡¢·½·¨ºÍ¹¹Ôìº¯ÊıµÄ·ÃÎÊĞŞÊÎ·ûÀ´ÅĞ¶Ï¸Ã×Ö¶Î¡¢·½·¨ºÍ¹¹Ôìº¯ÊıÊÇ·ñ¿É¶Á¿ÉĞ´¡£
+        // isAccessible()è¿”å›çš„ä¸ºoverrideå±æ€§ã€‚
+        // overrideæŒ‡ç¤ºè¯¥å¯¹è±¡æ˜¯å¦è¦†ç›–è¯­è¨€çº§è®¿é—®æ£€æŸ¥ã€‚åˆå§‹åŒ–ä¸º"false"ã€‚æ­¤å­—æ®µç”±å­—æ®µã€æ–¹æ³•å’Œæ„é€ å‡½æ•°ä½¿ç”¨ã€‚
+        // è®¿é—®æ£€æŸ¥åº”è¯¥æ˜¯æ ¹æ®è¯¥å­—æ®µã€æ–¹æ³•å’Œæ„é€ å‡½æ•°çš„è®¿é—®ä¿®é¥°ç¬¦æ¥åˆ¤æ–­è¯¥å­—æ®µã€æ–¹æ³•å’Œæ„é€ å‡½æ•°æ˜¯å¦å¯è¯»å¯å†™ã€‚
         age.setAccessible(true);
         age.set(employee, 10);
         System.out.println(employee);
 
-        // µ÷ÓÃ·½·¨
+        // è°ƒç”¨æ–¹æ³•
         Method show = clazz.getDeclaredMethod("show");
         show.invoke(employee);
     }
 
     @Test
     public void test02() throws ClassNotFoundException {
-        // ·½Ê½Ò»£ºµ÷ÓÃÔËĞĞÊ±ÀàµÄÊôĞÔ£º.class
+        // æ–¹å¼ä¸€ï¼šè°ƒç”¨è¿è¡Œæ—¶ç±»çš„å±æ€§ï¼š.class
         Class<Employee> clazz1 = Employee.class;
 
-        // ·½Ê½¶ş£ºÍ¨¹ıÔËĞĞÊ±ÀàµÄ¶ÔÏó£¬µ÷ÓÃgetClass()
+        // æ–¹å¼äºŒï¼šé€šè¿‡è¿è¡Œæ—¶ç±»çš„å¯¹è±¡ï¼Œè°ƒç”¨getClass()
         Employee employee = new Employee();
         Class<? extends Employee> clazz2 = employee.getClass();
 
-        // ·½Ê½Èı£ºµ÷ÓÃClassµÄ¾²Ì¬·½·¨£ºforName(String classPath)
+        // æ–¹å¼ä¸‰ï¼šè°ƒç”¨Classçš„é™æ€æ–¹æ³•ï¼šforName(String classPath)
         Class<?> clazz3 = Class.forName("domain.Employee");
 
-        // ·½Ê½ËÄ£ºÊ¹ÓÃÀàµÄ¼ÓÔØÆ÷£ºClassLoader
+        // æ–¹å¼å››ï¼šä½¿ç”¨ç±»çš„åŠ è½½å™¨ï¼šClassLoader
         ClassLoader classLoader = ReflectionTest.class.getClassLoader();
         Class<?> clazz4 = classLoader.loadClass("domain.Employee");
     }
 
     /**
-     * ClassÊµÀı¿ÉÒÔÊÇÄÄĞ©½á¹¹
+     * Classå®ä¾‹å¯ä»¥æ˜¯å“ªäº›ç»“æ„
      */
     @Test
     public void test03() {
-        // Àà
+        // ç±»
         Class<Object> c1 = Object.class;
-        // ½Ó¿Ú
+        // æ¥å£
         Class<Comparable> c2 = Comparable.class;
-        // Êı×é
+        // æ•°ç»„
         Class<String[]> c3 = String[].class;
         Class<int[][]> c4 = int[][].class;
-        // Ã¶¾Ù
+        // æšä¸¾
         Class<ElementType> c5 = ElementType.class;
-        // ×¢½â
+        // æ³¨è§£
         Class<Override> c6 = Override.class;
-        // »ù±¾ÀàĞÍ
+        // åŸºæœ¬ç±»å‹
         Class<Integer> c7 = int.class;
         // void
         Class<Void> c8 = void.class;
@@ -94,7 +94,7 @@ public class ReflectionTest {
         int[] b = new int[100];
         Class<? extends int[]> c10 = a.getClass();
         Class<? extends int[]> c11 = b.getClass();
-        // Ö»ÒªÊı×éµÄÔªËØÀàĞÍÓëÎ¬¶ÈÒ»Ñù£¬¾ÍÊÇÍ¬Ò»¸öClassÊµÀı
+        // åªè¦æ•°ç»„çš„å…ƒç´ ç±»å‹ä¸ç»´åº¦ä¸€æ ·ï¼Œå°±æ˜¯åŒä¸€ä¸ªClasså®ä¾‹
         System.out.println(c10 == c11);
     }
 }

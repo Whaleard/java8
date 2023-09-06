@@ -11,9 +11,9 @@ import java.util.concurrent.ThreadPoolExecutor;
 public class ThreadTest {
 
     // public static void main(String[] args) {
-    //     Station s1 = new Station("´°¿Ú1");
-    //     Station s2 = new Station("´°¿Ú2");
-    //     Station s3 = new Station("´°¿Ú3");
+    //     Station s1 = new Station("çª—å£1");
+    //     Station s2 = new Station("çª—å£2");
+    //     Station s3 = new Station("çª—å£3");
     //
     //     s1.start();
     //     s2.start();

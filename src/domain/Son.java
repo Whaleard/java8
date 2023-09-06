@@ -33,7 +33,7 @@ public class Son extends Father{
         Life wujiLife = wuji.getLife();
         wujiLife.setStatus("alive");
         wuji.setLife(wujiLife);
-        cuishanLife.setStatus("dead"); // ´äÉ½ºóÀ´×ÔØØÁË
+        cuishanLife.setStatus("dead"); // ç¿ å±±åæ¥è‡ªåˆäº†
 
         System.out.println(cuishan);
         System.out.println(wuji);

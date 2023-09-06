@@ -9,10 +9,10 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void login() {
-        System.out.println("ÕýÔÚµÇÂ¼ÖÐ...");
+        System.out.println("æ­£åœ¨ç™»å½•ä¸­...");
     }
 
     public void logout() {
-        System.out.println("ÕýÔÚµÇ³öÖÐ...");
+        System.out.println("æ­£åœ¨ç™»å‡ºä¸­...");
     }
 }

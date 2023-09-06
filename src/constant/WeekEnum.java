@@ -5,7 +5,7 @@ package constant;
  */
 
 public enum WeekEnum {
-    MON("ÐÇÆÚÒ»", 1), TUE("ÐÇÆÚ¶þ", 2), WED("ÐÇÆÚÈý", 3){
+    MON("æ˜ŸæœŸä¸€", 1), TUE("æ˜ŸæœŸäºŒ", 2), WED("æ˜ŸæœŸä¸‰", 3){
         public boolean isRest() {
             return true;
         }

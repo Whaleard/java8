@@ -13,31 +13,31 @@ public class ClassLoaderTest {
 
     @Test
     public void test01() {
-        // ¶ÔÓÚ×Ô¶¨ÒåÀà£¬Ê¹ÓÃÏµÍ³Àà¼ÓÔØÆ÷½øĞĞ¼ÓÔØ
+        // å¯¹äºè‡ªå®šä¹‰ç±»ï¼Œä½¿ç”¨ç³»ç»Ÿç±»åŠ è½½å™¨è¿›è¡ŒåŠ è½½
         ClassLoader classLoader = ClassLoaderTest.class.getClassLoader();
         System.out.println(classLoader);
-        // µ÷ÓÃÏµÍ³Àà¼ÓÔØÆ÷µÄgetParent()£¬»ñÈ¡À©Õ¹Àà¼ÓÔØÆ÷
+        // è°ƒç”¨ç³»ç»Ÿç±»åŠ è½½å™¨çš„getParent()ï¼Œè·å–æ‰©å±•ç±»åŠ è½½å™¨
         ClassLoader classLoader1 = classLoader.getParent();
         System.out.println(classLoader1);
-        // µ÷ÓÃÀ©Õ¹Àà¼ÓÔØÆ÷µÄgetParent()£¬ÎŞ·¨»ñÈ¡Òıµ¼Àà¼ÓÔØÆ÷
-        // Òıµ¼Àà¼ÓÔØÆ÷Ö÷Òª¸ºÔğ¼ÓÔØjavaµÄºËĞÄÀà¿â£¬ÎŞ·¨¼ÓÔØ×Ô¶¨ÒåµÄÀà
+        // è°ƒç”¨æ‰©å±•ç±»åŠ è½½å™¨çš„getParent()ï¼Œæ— æ³•è·å–å¼•å¯¼ç±»åŠ è½½å™¨
+        // å¼•å¯¼ç±»åŠ è½½å™¨ä¸»è¦è´Ÿè´£åŠ è½½javaçš„æ ¸å¿ƒç±»åº“ï¼Œæ— æ³•åŠ è½½è‡ªå®šä¹‰çš„ç±»
         ClassLoader classLoader2 = classLoader1.getParent();
         System.out.println(classLoader2);
     }
 
     /**
-     * Properties£ºÓÃÀ´¶ÁÈ¡ÅäÖÃÎÄ¼ş
+     * Propertiesï¼šç”¨æ¥è¯»å–é…ç½®æ–‡ä»¶
      */
     @Test
     public void test02() throws Exception {
         Properties pros = new Properties();
-        // ¶ÁÈ¡ÅäÖÃÎÄ¼ş·½Ê½Ò»
-        // ´ËÊ±µÄÎÄ¼şÄ¬ÈÏÔÚµ±Ç°µÄmoduleÏÂ
+        // è¯»å–é…ç½®æ–‡ä»¶æ–¹å¼ä¸€
+        // æ­¤æ—¶çš„æ–‡ä»¶é»˜è®¤åœ¨å½“å‰çš„moduleä¸‹
         FileInputStream fis = new FileInputStream("jdbc.properties");
         // pros.load(fis);
 
-        // ¶ÁÈ¡ÅäÖÃÎÄ¼ş·½Ê½¶ş
-        // ´ËÊ±ÎÄ¼şÄ¬ÈÏÊ¶±ğÎª£ºµ±Ç°moduleµÄsrcÏÂ
+        // è¯»å–é…ç½®æ–‡ä»¶æ–¹å¼äºŒ
+        // æ­¤æ—¶æ–‡ä»¶é»˜è®¤è¯†åˆ«ä¸ºï¼šå½“å‰moduleçš„srcä¸‹
         ClassLoader classLoader = ClassLoaderTest.class.getClassLoader();
         InputStream is = classLoader.getResourceAsStream("jdbc1.properties");
 
