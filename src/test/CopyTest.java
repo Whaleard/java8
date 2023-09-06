@@ -18,8 +18,8 @@ import java.util.stream.Collectors;
 public class CopyTest {
 
     /**
-     * org.apache.commons.beanutils°üÏÂºÍorg.springframework.beans°üÏÂµÄ
-     * BeanUtilsµÄ¸´ÖÆ¶¼ÊÇÇ³¿½±´
+     * org.apache.commons.beanutilsåŒ…ä¸‹å’Œorg.springframework.beansåŒ…ä¸‹çš„
+     * BeanUtilsçš„å¤åˆ¶éƒ½æ˜¯æµ…æ‹·è´
      *
      * @throws InvocationTargetException
      * @throws IllegalAccessException
@@ -38,44 +38,44 @@ public class CopyTest {
             System.out.println(field);
         }
 
-        People sourcePeople = new People("ÕÅÈı", 'ÄĞ', new Animal("¹şÊ¿Ææ", "ºÚ°×"));
+        People sourcePeople = new People("å¼ ä¸‰", 'ç”·', new Animal("å“ˆå£«å¥‡", "é»‘ç™½"));
         People targetPeople = new People();
         BeanUtils.copyProperties(targetPeople, sourcePeople);
-        // targetPeople.setAnimal(new Animal("½ğÃ«", "éÙ»Æ"));
-        targetPeople.getAnimal().setName("½ğÃ«");
-        targetPeople.getAnimal().setColor("éÙ»Æ");
+        // targetPeople.setAnimal(new Animal("é‡‘æ¯›", "æ©˜é»„"));
+        targetPeople.getAnimal().setName("é‡‘æ¯›");
+        targetPeople.getAnimal().setColor("æ©˜é»„");
         System.out.println(sourcePeople);
         System.out.println(targetPeople);
 
         // People holomogyPeople = sourcePeople;
-        // holomogyPeople.setAnimal(new Animal("½ğÃ«", "éÙ»Æ"));
+        // holomogyPeople.setAnimal(new Animal("é‡‘æ¯›", "æ©˜é»„"));
         // System.out.println(sourcePeople);
         // System.out.println(holomogyPeople);
     }
 
     /**
-     * lang3ÏÂµÄSerializationUtilsµÄÉî¿½±´
+     * lang3ä¸‹çš„SerializationUtilsçš„æ·±æ‹·è´
      */
     @Test
     public void test2() {
-        People sourcePeople = new People("ÕÅÈı", 'ÄĞ', new Animal("¹şÊ¿Ææ", "ºÚ°×"));
+        People sourcePeople = new People("å¼ ä¸‰", 'ç”·', new Animal("å“ˆå£«å¥‡", "é»‘ç™½"));
         People targetPeople = SerializationUtils.clone(sourcePeople);
-        sourcePeople.getAnimal().setName("½ğÃ«");
-        sourcePeople.getAnimal().setColor("éÙ»Æ");
+        sourcePeople.getAnimal().setName("é‡‘æ¯›");
+        sourcePeople.getAnimal().setColor("æ©˜é»„");
         System.out.println(sourcePeople);
         System.out.println(targetPeople);
     }
 
     /**
-     * fastjsonµÄÉî¿½±´
+     * fastjsonçš„æ·±æ‹·è´
      */
     @Test
     public void test3() {
-        People sourcePeople = new People("ÕÅÈı", 'ÄĞ', new Animal("¹şÊ¿Ææ", "ºÚ°×"));
+        People sourcePeople = new People("å¼ ä¸‰", 'ç”·', new Animal("å“ˆå£«å¥‡", "é»‘ç™½"));
         String json = JSON.toJSONString(sourcePeople);
         People targetPeople = JSON.parseObject(json, People.class);
-        sourcePeople.getAnimal().setName("½ğÃ«");
-        sourcePeople.getAnimal().setColor("éÙ»Æ");
+        sourcePeople.getAnimal().setName("é‡‘æ¯›");
+        sourcePeople.getAnimal().setColor("æ©˜é»„");
         System.out.println(sourcePeople);
         System.out.println(targetPeople);
     }
