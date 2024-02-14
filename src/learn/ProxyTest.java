@@ -5,17 +5,15 @@ import dao.impl.UserDaoImpl;
 import org.junit.Test;
 import proxy.UserProxy;
 
-/**
- * 什么是静态代理？
- *  静态代理实际上是在不改变被代理对象功能（代码）的前提下，使用代理对象对其进行功能上的拓展。
- *
- * 静态代理的特点
- *  被代理对象和代理对象实现相同的接口
- *
- * @author Mr.MC
- */
-public class StaticProxyTest {
+public class ProxyTest {
 
+    /**
+     * 什么是静态代理？
+     * 静态代理实际上是在不改变被代理对象功能（代码）的前提下，使用代理对象对其进行功能上的拓展。
+     *
+     * 静态代理的特点
+     * 被代理对象和代理对象实现相同的接口
+     */
     @Test
     public void test01() {
         // 被代理类作为代理类的一个成员变量，
@@ -26,5 +24,10 @@ public class StaticProxyTest {
         UserProxy proxy = new UserProxy(userDao);
         proxy.login();
         proxy.logout();
+    }
+
+    @Test
+    public void test02() {
+
     }
 }

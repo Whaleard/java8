@@ -1,5 +1,6 @@
 package learn;
 
+import org.apache.commons.lang3.time.StopWatch;
 import org.junit.Test;
 
 import java.time.*;
@@ -164,5 +165,16 @@ public class DateTimeTest {
         LocalDateTime ldt2 = LocalDateTime.now();
         ZonedDateTime zdt = ldt2.atZone(ZoneId.of("Asia/Aden"));
         System.out.println(zdt);
+    }
+
+    @Test
+    public void test07() {
+        for (int i = 0; i < 100000; i++) {
+            System.out.println(111);
+        }
+        // 查看当前Java虚拟机可用内存的剩余量
+        long l = Runtime.getRuntime().freeMemory();
+        double l1 = l * 8.0 / 1024 / 1024 / 1024;
+        System.out.println(l1);
     }
 }

@@ -3,6 +3,7 @@ package dao.impl;
 import dao.UserDao;
 
 /**
+ * 真实角色：实现抽象角色，定义真实角色所要实现的业务逻辑，供代理角色调用。
  * @author Mr.MC
  */
 public class UserDaoImpl implements UserDao {

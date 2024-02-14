@@ -1,6 +1,7 @@
 package test;
 
 import domain.Station;
+import org.apache.commons.lang3.time.StopWatch;
 import org.junit.Test;
 
 import java.util.concurrent.ThreadPoolExecutor;
@@ -20,7 +21,31 @@ public class ThreadTest {
     //     s3.start();
     // }
 
-    public static void main(String[] args) {
-
+    @Test
+    public void test08() throws InterruptedException {
+        // 任务执行时间监视器
+        StopWatch stopWatch = new StopWatch();
+        // 开始计时
+        stopWatch.start();
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    StopWatch stopWatch2 = new StopWatch();
+                    stopWatch2.start();
+                    Thread.sleep(3000);
+                    stopWatch2.stop();
+                    System.out.println(stopWatch2.getTime());
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        };
+        Thread.sleep(1000);
+        runnable.run();
+        // 停止计时
+        stopWatch.stop();
+        // 统计从start到现在的计时
+        System.out.println(stopWatch.getTime());
     }
 }
