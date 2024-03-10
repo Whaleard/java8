@@ -3,13 +3,21 @@ package learn;
 import dao.UserDao;
 import dao.impl.UserDaoImpl;
 import org.junit.Test;
+import proxy.HandlerInvocationHandler;
 import proxy.UserProxy;
 
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Proxy;
+
+/**
+ * 什么是代理模式？
+ * 代理模式实际上是在不改变被代理对象功能（代码）的前提下，使用代理对象对其进行功能上的拓展。
+ */
 public class ProxyTest {
 
     /**
      * 什么是静态代理？
-     * 静态代理实际上是在不改变被代理对象功能（代码）的前提下，使用代理对象对其进行功能上的拓展。
+     * 静态代理就是在编写代码的时候就已经把代理类的源码写好了。
      *
      * 静态代理的特点
      * 被代理对象和代理对象实现相同的接口
@@ -26,8 +34,17 @@ public class ProxyTest {
         proxy.logout();
     }
 
+    /**
+     * 什么是动态代理？
+     * 动态代理
+     */
     @Test
     public void test02() {
-
+        UserDao userDao = new UserDaoImpl();
+        InvocationHandler handler = new HandlerInvocationHandler<>(userDao);
+        // UserDao userDaoProxy = (UserDao) Proxy.newProxyInstance(UserDao.class.getClassLoader(), new Class[]{UserDao.class}, handler);
+        UserDao userDaoProxy = (UserDao) Proxy.newProxyInstance(UserDaoImpl.class.getClassLoader(), UserDaoImpl.class.getInterfaces(), handler);
+        userDaoProxy.login();
+        userDaoProxy.logout();
     }
 }
