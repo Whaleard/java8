@@ -1,5 +1,7 @@
 package test;
 
+import domain.Animal;
+import domain.MyThread;
 import domain.Station;
 import org.apache.commons.lang3.time.StopWatch;
 import org.junit.Test;
@@ -22,7 +24,7 @@ public class ThreadTest {
     // }
 
     @Test
-    public void test08() throws InterruptedException {
+    public void test01() throws InterruptedException {
         // 任务执行时间监视器
         StopWatch stopWatch = new StopWatch();
         // 开始计时
@@ -47,5 +49,19 @@ public class ThreadTest {
         stopWatch.stop();
         // 统计从start到现在的计时
         System.out.println(stopWatch.getTime());
+    }
+
+    @Test
+    public void test03() {
+        Thread t1 = new Thread(() -> {
+            for (int i = 0; i < 1000; i++) {
+                System.out.println("1");
+            }
+        });
+        t1.run();
+        // t1.start();
+
+        MyThread t2 = new MyThread();
+        t2.run();
     }
 }
