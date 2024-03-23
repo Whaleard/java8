@@ -96,4 +96,40 @@ public class ThreadTest {
         // t2.run();
         t2.start();
     }
+
+    // @Test
+    // public void test04() {
+    //     Thread t = new Thread();
+    //     t.start();
+    //     // 只有线程启动之后才会
+    //     System.out.println(Thread.activeCount());
+    // }
+
+    /**
+     * 当前进程结束，守护线程随之结束
+     **/
+    @Test
+    public void test05() {
+        Thread t1 = new Thread(() -> {
+            for (int i = 0; i < 5; i++) {
+                System.out.println("线程1第" + i + "次执行！");
+            }
+        });
+        Thread t2 = new Thread(() -> {
+            for (int i = 0; i < 9999999999L; i++) {
+                System.out.println("线程2第" + i + "次执行！");
+            }
+        });
+
+        // 设置为守护线程，注意一定要在线程开始（调用start()方法）之前调用
+        t2.setDaemon(true);
+
+        t1.start();
+        t2.start();
+    }
+
+    @Test
+    public void test06() {
+        
+    }
 }
