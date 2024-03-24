@@ -1,10 +1,6 @@
-package learn;
+package proxy;
 
-import dao.UserDao;
-import dao.impl.UserDaoImpl;
 import org.junit.Test;
-import proxy.HandlerInvocationHandler;
-import proxy.UserProxy;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;

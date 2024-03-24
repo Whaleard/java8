@@ -1,6 +1,5 @@
-package test;
+package thread;
 
-import domain.*;
 import org.apache.commons.lang3.time.StopWatch;
 import org.junit.Test;
 
@@ -11,6 +10,14 @@ import java.util.concurrent.FutureTask;
  * @author Mr.MC
  */
 public class ThreadTest {
+
+    // 1、通过匿名内部类覆盖ThreadLocal的initialValue()方法，指定初始值
+    private static ThreadLocal<Integer> seqNum = new ThreadLocal<Integer>() {
+        @Override
+        public Integer initialValue() {
+            return 0;
+        }
+    };
 
     // public static void main(String[] args) {
     //     Station s1 = new Station("窗口1");
@@ -28,18 +35,15 @@ public class ThreadTest {
         StopWatch stopWatch = new StopWatch();
         // 开始计时
         stopWatch.start();
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    StopWatch stopWatch2 = new StopWatch();
-                    stopWatch2.start();
-                    Thread.sleep(3000);
-                    stopWatch2.stop();
-                    System.out.println(stopWatch2.getTime());
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
+        Runnable runnable = () -> {
+            try {
+                StopWatch stopWatch2 = new StopWatch();
+                stopWatch2.start();
+                Thread.sleep(3000);
+                stopWatch2.stop();
+                System.out.println(stopWatch2.getTime());
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
             }
         };
         Thread.sleep(1000);
@@ -130,6 +134,42 @@ public class ThreadTest {
 
     @Test
     public void test06() {
-        
+        ThreadTest tt = new ThreadTest();
+        // 3、3个线程共享tt，各自产生序列号
+        ThreadClient t1 = new ThreadClient(tt);
+        ThreadClient t2 = new ThreadClient(tt);
+        ThreadClient t3 = new ThreadClient(tt);
+        t1.start();
+        t2.start();
+        t3.start();
+    }
+
+    public ThreadLocal<Integer> getThreadLocal() {
+        return seqNum;
+    }
+
+    // 2、获取下一个序列值
+    public int getNextNum() {
+        seqNum.set(seqNum.get() + 1);
+        return seqNum.get();
+    }
+
+    private static class ThreadClient extends Thread {
+        private ThreadTest tt;
+
+        public ThreadClient(ThreadTest tt) {
+            this.tt = tt;
+        }
+
+        @Override
+        public void run() {
+            for (int i = 0; i < 3; i++) {
+                // 4、每个线程打出3个序列值
+                System.out.println("thread[" + Thread.currentThread().getName()
+                        + "] --> tt[" + tt.getNextNum() + "]");
+            }
+
+            tt.getThreadLocal().remove();
+        }
     }
 }

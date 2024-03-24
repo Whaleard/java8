@@ -1,4 +1,4 @@
-package domain;
+package thread;
 
 /**
  * 继承Thread类的方式实现多线程

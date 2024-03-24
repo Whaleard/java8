@@ -1,7 +1,5 @@
 package proxy;
 
-import dao.UserDao;
-
 /**
  * 静态代理
  *
