@@ -144,6 +144,17 @@ public class ThreadTest {
         t3.start();
     }
 
+    /**
+     * 线程处理unchecked exception
+     **/
+    @Test
+    public void test07() {
+        ExceptionThread task = new ExceptionThread();
+        Thread thread = new Thread(task);
+        thread.setUncaughtExceptionHandler(new ExceptionHandlerThread());
+        thread.start();
+    }
+
     public ThreadLocal<Integer> getThreadLocal() {
         return seqNum;
     }
