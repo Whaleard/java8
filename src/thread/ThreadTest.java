@@ -12,12 +12,16 @@ import java.util.concurrent.FutureTask;
 public class ThreadTest {
 
     // 1、通过匿名内部类覆盖ThreadLocal的initialValue()方法，指定初始值
-    private static ThreadLocal<Integer> seqNum = new ThreadLocal<Integer>() {
+    private static ThreadLocal<Integer> initValue = new ThreadLocal<Integer>() {
         @Override
+        // 初始化变量
         public Integer initialValue() {
             return 0;
         }
     };
+
+    // 创建ThreadLocal变量并初始化（替代通过new创建对象并重写initialValue()方法）
+    private ThreadLocal<Integer> seqNum = ThreadLocal.withInitial(() -> 0);
 
     // public static void main(String[] args) {
     //     Station s1 = new Station("窗口1");
