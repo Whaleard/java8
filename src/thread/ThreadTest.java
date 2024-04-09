@@ -160,23 +160,11 @@ public class ThreadTest {
     }
 
     /**
-     * 线程安全问题
+     *
      */
     @Test
     public void test08() {
-        Count count = new Count();
-        for (int i = 0; i < 5; i++) {
-            CountThread t = new CountThread(count);
-            t.start();
-        }
 
-        try {
-            Thread.sleep(1001);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
-        System.out.println("最后num的值为：" + count.num);
     }
 
     public ThreadLocal<Integer> getThreadLocal() {
