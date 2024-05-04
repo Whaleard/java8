@@ -11,6 +11,11 @@ import java.util.concurrent.FutureTask;
  */
 public class ThreadTest {
 
+    /**
+     * volatile关键字修饰的变量，读会从内存中读取，写不会立即写入内存
+     **/
+    public volatile static int count = 0;
+
     // 1、通过匿名内部类覆盖ThreadLocal的initialValue()方法，指定初始值
     private static ThreadLocal<Integer> initValue = new ThreadLocal<Integer>() {
         @Override
