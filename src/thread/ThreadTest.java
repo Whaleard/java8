@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author Mr.MC
@@ -165,11 +166,23 @@ public class ThreadTest {
     }
 
     /**
-     *
+     * 原子操作automic
+     * todo 这里待学习cpu的比较并交换和非阻塞算法
      */
     @Test
     public void test08() {
-
+        AtomicInteger ai = new AtomicInteger(0);
+        // 获取当前值
+        System.out.println(ai.get());
+        // 获取当前的值，并设置新值
+        System.out.println(ai.getAndSet(5));
+        // 获取当前的值，并自增
+        System.out.println(ai.getAndIncrement());
+        // 获取当前的值，并自减
+        System.out.println(ai.getAndDecrement());
+        // 获取当前的值，并加上预期的值
+        System.out.println(ai.getAndAdd(10));
+        System.out.println(ai.get());
     }
 
     public ThreadLocal<Integer> getThreadLocal() {
