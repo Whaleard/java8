@@ -1,5 +1,7 @@
 package thread;
 
+import base.ServiceSupport;
+
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -9,7 +11,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * @Date 2024/5/5 1:41
  * @Version 1.0
  **/
-public class Singleton {
+public class Singleton extends ServiceSupport {
     private static Singleton instance;
 
     private static byte[] lock = new byte[0];
