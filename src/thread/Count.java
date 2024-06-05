@@ -38,7 +38,8 @@ public class Count {
      * synchronized(static)
      */
     public void methodC() {
-        synchronized (lock) {   // lock是静态变量在内存中只有一个故
+        // lock是静态变量在内存中只有一个
+        synchronized (lock) {
 
         }
     }
