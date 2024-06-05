@@ -7,11 +7,15 @@ import org.junit.Test;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author Mr.MC
  */
 public class ThreadTest extends ServiceSupport {
+
+    // 可重入锁ReentrantLock
+    public static ReentrantLock lock = new ReentrantLock();
 
     /**
      * volatile关键字修饰的变量，读会从内存中读取，写不会立即写入内存
@@ -186,6 +190,14 @@ public class ThreadTest extends ServiceSupport {
         System.out.println(ai.get());
     }
 
+    /**
+     * synchronize和ReentrantLock都是可重入锁
+     */
+    @Test
+    public void test09() {
+        lock1();
+    }
+
     public ThreadLocal<Integer> getThreadLocal() {
         return seqNum;
     }
@@ -212,6 +224,29 @@ public class ThreadTest extends ServiceSupport {
             }
 
             tt.getThreadLocal().remove();
+        }
+    }
+
+    public void lock1() {
+        try {
+            lock.lock();
+            logger.info("------lock1执行------");
+            lock2();
+        } catch (IllegalMonitorStateException e) {
+            e.printStackTrace();
+        } finally {
+            lock.unlock();
+        }
+    }
+
+    public void lock2() {
+        try {
+            lock.lock();
+            logger.info("------lock2执行------");
+        } catch (IllegalMonitorStateException e) {
+            e.printStackTrace();
+        } finally {
+            lock.unlock();
         }
     }
 }
