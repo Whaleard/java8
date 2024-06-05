@@ -1,5 +1,6 @@
 package thread;
 
+import base.ServiceSupport;
 import org.apache.commons.lang3.time.StopWatch;
 import org.junit.Test;
 
@@ -10,7 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * @author Mr.MC
  */
-public class ThreadTest {
+public class ThreadTest extends ServiceSupport {
 
     /**
      * volatile关键字修饰的变量，读会从内存中读取，写不会立即写入内存
