@@ -20,9 +20,11 @@ public class ThreadTest extends ServiceSupport {
     /**
      * volatile关键字修饰的变量，读会从内存中读取，写不会立即写入内存
      **/
-    public volatile static int count = 0;
+    public volatile static int volCount = 0;
 
-    // 1、通过匿名内部类覆盖ThreadLocal的initialValue()方法，指定初始值
+    /**
+     * 1、通过匿名内部类覆盖ThreadLocal的initialValue()方法，指定初始值
+     */
     private static ThreadLocal<Integer> initValue = new ThreadLocal<Integer>() {
         @Override
         // 初始化变量
@@ -31,7 +33,9 @@ public class ThreadTest extends ServiceSupport {
         }
     };
 
-    // 创建ThreadLocal变量并初始化（替代通过new创建对象并重写initialValue()方法）
+    /**
+     * 创建ThreadLocal变量并初始化（替代通过new创建对象并重写initialValue()方法）
+     */
     private ThreadLocal<Integer> seqNum = ThreadLocal.withInitial(() -> 0);
 
     // public static void main(String[] args) {
@@ -198,11 +202,32 @@ public class ThreadTest extends ServiceSupport {
         lock1();
     }
 
+    /**
+     * 单例共享变量导致线程安全问题
+     */
+    @Test
+    public void test10() {
+        Count count = new Count();
+        for (int i = 0; i < 5; i++) {
+            CountThread task = new CountThread(count);
+            task.start();
+        }
+        try {
+            Thread.sleep(1001);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("5个人干完活：最后的值" + count.num);
+    }
+
     public ThreadLocal<Integer> getThreadLocal() {
         return seqNum;
     }
 
-    // 2、获取下一个序列值
+    /**
+     * 2、获取下一个序列值
+     * @return
+     */
     public int getNextNum() {
         seqNum.set(seqNum.get() + 1);
         return seqNum.get();
