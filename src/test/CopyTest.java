@@ -80,10 +80,24 @@ public class CopyTest {
         System.out.println(targetPeople);
     }
 
+    /**
+     * java调用函数时的传参，传递的其实是参数的副本，也就是另一个指向该地址的引用。
+     * 若是通过setXxx()来更新副本值，副本变则原地址内容变；
+     * 若是通过new重新给该副本赋值，则副本指向新地址，不会改变原地址的内容。
+     */
     @Test
-    public void test() {
-        String s1 = "2023-05-03";
-        String s2 = "2023-05-10";
-        System.out.println(s1.compareTo(s2) < 0);
+    public void test4() {
+        Animal animal = new Animal("二哈", "黑白");
+        this.changeName(animal);
+        System.out.println(animal);
+    }
+
+    private void changeName(Animal animal) {
+        System.out.println(animal);
+        // 通过setXxx()方法更改数据则入参数据值改变
+        // animal.setName("大黄");
+
+        // 重新给入参赋值，则不会更改原数据值
+        animal = new Animal("大黄", "黑白");
     }
 }
