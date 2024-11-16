@@ -1,9 +1,14 @@
 package domain;
 
+import java.util.Comparator;
+
 /**
+ * Comparable接口是排序接口。
+ * 类实现Comparable接口，意味着“该类支持排序”，通过重写compareTo(Object o)来定义排序规则
+ *
  * @author Mr.MC
  */
-public class Employee {
+public class Employee implements Comparable<Employee> {
     private String name;
     private Integer age;
     private Double salary;
@@ -69,6 +74,13 @@ public class Employee {
                 ", age=" + age +
                 ", salary=" + salary +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Employee o) {
+        // 当前对象-入参：返回值大于0，交换当前参数与入参的顺序；返回值小于等于0，不交换位置，此为从小到大排序
+        // 入参-当前对象：返回值大于0，交换入参与当前参数的顺序，返回值小于等于0，不交换位置，此为从大到小排序
+        return this.age - o.age;
     }
 
     public enum Status {
