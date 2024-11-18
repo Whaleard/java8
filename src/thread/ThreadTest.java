@@ -5,7 +5,9 @@ import org.apache.commons.lang3.time.StopWatch;
 import org.junit.Test;
 
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.FutureTask;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -222,6 +224,124 @@ public class ThreadTest extends ServiceSupport {
 
     public ThreadLocal<Integer> getThreadLocal() {
         return seqNum;
+    }
+
+    /**
+     * TimeUnit
+     *      1、可以进行时间颗粒度转换：toSeconds(long d)
+     *      2、延时：TimeUnit.MICROSECONDS.sleep(long timeout)
+     */
+    @Test
+    public void test11() {
+        Object lock = new Object();
+        Thread thread = new Thread(() -> {
+            synchronized (lock) {
+                logger.info(Thread.currentThread().getName() + "获取了锁");
+
+                try {
+                    logger.info(Thread.currentThread().getName() + "休眠一会儿");
+                    TimeUnit.SECONDS.sleep(3);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+
+                logger.info(Thread.currentThread().getName() + "调用wait...");
+                try {
+                    lock.wait();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+
+                logger.info(Thread.currentThread().getName() + "被唤醒");
+            }
+        }, "A");
+
+        thread.start();
+
+        try {
+            TimeUnit.SECONDS.sleep(5);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        lock.notify();
+    }
+
+    @Test
+    public void test12() {
+        Object lock = new Object();
+
+        Thread thread = new Thread(() -> {
+            synchronized (lock) {
+                logger.info(Thread.currentThread().getName() + "获取了锁");
+                try {
+                    logger.info(Thread.currentThread().getName() + "休眠一会儿");
+                    TimeUnit.SECONDS.sleep(1);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                logger.info(Thread.currentThread().getName() + "调用wait...");
+                try {
+                    lock.wait();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+
+                logger.info(Thread.currentThread().getName() + "被唤醒");
+            }
+        }, "A");
+
+        thread.start();
+
+        // try {
+        //     TimeUnit.SECONDS.sleep(5);
+        // } catch (InterruptedException e) {
+        //     throw new RuntimeException(e);
+        // }
+
+        Thread thread2 = new Thread(() -> {
+            synchronized (lock) {
+                logger.info(Thread.currentThread().getName() + "获取了锁");
+
+                logger.info(Thread.currentThread().getName() + "叫醒thread");
+                lock.notify();
+            }
+        }, "B");
+
+        thread2.start();
+    }
+
+    @Test
+    public void test13() {
+        ExecutorService executor = ThreadUtil.newSingleThreadExecutor();
+        for (int i = 0; i < 10; i++) {
+            final int no = i;
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        System.out.println("into" + no);
+                        Thread.sleep(1000);
+                        System.out.println("end" + no);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            };
+            // lambda简化写法
+            // Runnable runnable = () -> {
+            //     try {
+            //         System.out.println("into" + no);
+            //         Thread.sleep(1000);
+            //         System.out.println("end" + no);
+            //     } catch (InterruptedException e) {
+            //         throw new RuntimeException(e);
+            //     }
+            // };
+            executor.execute(runnable);
+        }
+        executor.shutdown();
+        System.out.println("Thread Main End!");
     }
 
     /**
