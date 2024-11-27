@@ -25,6 +25,17 @@ public class ThreadUtil {
      * @return
      */
     public static ExecutorService newSingleThreadExecutor() {
+        /*
+            以单线程线程池为例：
+                public static ExecutorService newSingleThreadExecutor() {
+                    return new FinalizableDelegatedExecutorService(new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<Runnable>()));
+                }
+
+                ThreadPoolExecutor构造函数参数详解：
+                    corePoolSize：核心池大小，核心池中的线程会一直存活不会被销毁。当有新任务时，若线程池中线程数小于核心线程数，线程池会创建一个线程去处理。
+                    maximumPoolSize：当线程池中的线程数大于corePoolSize且小于maximumPoolSize时，动态创建与回收线程池中的线程资源。
+
+         */
         return Executors.newSingleThreadExecutor();
     }
 
